@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Image classification using MobileNet and p5.js</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+</head>
+
+<body>
+  <div class="input-div">
+    <label for="input-file" id="drop-area">
+        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" hidden>
+        <div id="img-view">
+            <img src="images/upload.png" alt="">
+            <p>Drag and drop or click here<br> to upload image</p>
+            <span>Upload any image from desktop</span>
+        </div>
+
+        <div>
+            <p id="classification"></p>
+        </div>
+        <div>
+            <p id="probability"></p>
+        </div>
+    </label>
+  </div>
+
+  <script src="sketch.js"></script>
+</body>
+
+</html>
