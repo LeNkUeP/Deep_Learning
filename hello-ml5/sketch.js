@@ -32,6 +32,7 @@ function gotResult(error, results) {
   } else {
     // The results are in an array ordered by confidence.
     console.log(results);
+    //set texts
     classification.innerText = `Label: ${results[0].label}`
     probability.innerText = `Confidence: ${nf(results[0].confidence, 0, 2)}`
     //createDiv(`Label: ${results[0].label}`);
