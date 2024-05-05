@@ -1,0 +1,165 @@
+:root {
+    --color1: #ffffff; 
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.header{
+    font-size: 25px;
+}
+
+.container {
+    text-align: center;
+    padding-top: 50px; /* Abstand oben */
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.column img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 120px; /* Setze die Breite auf 80px oder einen anderen Wert deiner Wahl */
+    margin-bottom: 20px; /* Erhöhe den Abstand nach unten */
+    margin-right: 10px; /* Hinzugefügter Abstand nach rechts */
+    margin-left: 10px; /* Hinzugefügter Abstand nach links */
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 20px;
+}
+
+.diagram img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 120px; /* Setze die Breite auf 80px oder einen anderen Wert deiner Wahl */
+    margin-bottom: 20px; /* Erhöhe den Abstand nach unten */
+    margin-right: 10px; /* Hinzugefügter Abstand nach rechts */
+    margin-left: 10px; /* Hinzugefügter Abstand nach links */
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    border-radius: 20px;
+}
+
+.columnDiagram img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 120px; /* Setze die Breite auf 80px oder einen anderen Wert deiner Wahl */
+    margin-bottom: 20px; /* Erhöhe den Abstand nach unten */
+    margin-right: 10px; /* Hinzugefügter Abstand nach rechts */
+    margin-left: 10px; /* Hinzugefügter Abstand nach links */
+    transition: transform 0.3s, opacity 0.3s;
+    transform: scale(3.32);
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #797979;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #5e5e5e;
+}
+  
+.button:hover {
+    background-color: #979797
+}
+
+.button:active {
+  background-color: #636363;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#LeftDiagram{
+    transform-origin: top right;
+    transform: scale(3.32);
+}
+
+#RightDiagram{
+    transform-origin: top left;
+    transform: scale(3.32);
+}
+
+#img-view{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 7px dashed #858585;
+    background: #f0f0f0;
+    background-position: center;
+    background-size: cover;
+}
+
+#drop-area{
+    width: 500px;
+    height: 300px;
+    padding: 30px;
+    background: var(--color1);
+    text-align: center;
+    border-radius: 20px;
+}
+
+.input-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#uploadIcon{
+    width: 180px;
+}
+
+#chartArea{
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    display: none;
+}
+
+#myChart{
+    width: 100%;
+    height: 100%;
+    align-content: center;
+}
+
+#loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #4e4e4e;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    display: inline-block;
+}
+  
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.footer {
+    margin-top: 20px; /* Abstand zwischen Inhalt und Fußzeile */
+    display: inline-flex;
+    justify-content: center;
+    padding-bottom: 30px;
+}
