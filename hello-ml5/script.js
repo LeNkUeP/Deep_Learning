@@ -127,23 +127,33 @@ const barColors = [
 function showDiagram(results){
     resultChart.destroy();
 
-    xValues = [results[0].label, results[1].label, results[2].label]
+    xValues = results[0].label + ","+  results[1].label + "," + results[2].label;
     yValues = [results[0].confidence, results[1].confidence, results[2].confidence]
 
     resultChart = new Chart("myChart", {
         type: "bar",
         data: {
-        labels: xValues,
-        datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-        }]
+          labels: xValues.split(","),
+          datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+          }]
         },
         options: {
-        legend: {display: false},
-        title: {
-            display: true,
-            text: "Classification Result"
+          legend: {display: false},
+          title: {
+              display: true,
+              text: "Classification Result"
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            xAxes: [{
+                ticks: {
+                    maxRotation: 0,
+                    minRotation: 0,
+                }
+            }]
         }
         }
     });
