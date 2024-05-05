@@ -36,6 +36,7 @@ images.forEach(function(image) {
         diagrams.forEach(function(otherDiagram) {
             otherDiagram.style.opacity = '1';
         });
+        diagrams[0].src=image.src;
     });
 
     image.addEventListener('mouseout', function() {
@@ -106,34 +107,17 @@ const barColors = [
     "rgba(121, 121, 121,0.2)",
   ];
 
-  resultChart = new Chart("myChart", {
-    type: "bar",
-    data: {
-      labels: xValues,
-      datasets: [{
-        backgroundColor: barColors,
-        data: yValues
-      }]
-    },
-    options: {
-      legend: {display: false},
-      title: {
-        display: true,
-        text: "Classification Result"
-      }
-    }
-  });
 
 function showDiagram(results){
-    resultChart.destroy();
+    if (resultChart) resultChart.destroy();
 
-    xValues = results[0].label + ","+  results[1].label + "," + results[2].label;
+    xValues = [results[0].label,results[1].label,results[2].label];
     yValues = [results[0].confidence, results[1].confidence, results[2].confidence]
 
     resultChart = new Chart("myChart", {
         type: "bar",
         data: {
-          labels: xValues.split(","),
+          labels: xValues,
           datasets: [{
               backgroundColor: barColors,
               data: yValues
@@ -152,6 +136,10 @@ function showDiagram(results){
                 ticks: {
                     maxRotation: 0,
                     minRotation: 0,
+                    callback: function(value, index, values) {
+                      // Split the labels to show them on multiple lines
+                      return value.split(",");
+                    }
                 }
             }]
         }
