@@ -12,7 +12,6 @@
 
 .container {
     text-align: center;
-    padding-top: 50px; /* Abstand oben */
 }
 
 .content {
@@ -37,13 +36,17 @@
     height: 100%;
     transition: transform 0.3s, opacity 0.3s;
     opacity: 0;
-    border-radius: 20px;
     object-fit: contain;
 }
 
 .diagram{
-    height: 120px;
-    width: 120px;
+    height: 400px;
+    width: 400px;
+}
+
+#exampleChartArea{
+    height: 400px;
+    width: 400px;
 }
 
 .columnDiagram img {
@@ -82,7 +85,6 @@
 
 #LeftDiagram{
     transform-origin: top right;
-    transform: scale(3.32);
 }
 
 #RightDiagram{
