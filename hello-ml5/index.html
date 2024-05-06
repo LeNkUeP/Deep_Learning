@@ -101,7 +101,31 @@
                 Technical Documentation
             </b>
             <p>
-                
+                <ul>
+                    <li>Hosting with Github Pages</li>
+                    <li>Visual Code for implementation</li>
+                    <li>Chrome as web browser</li>
+                    <li>Ml5 and p5 like in the task description</li>
+                  </ul>
+            </p>
+            <p>
+                <b>
+                    Frameworks
+                </b>
+            </p>
+            <p>Chart.js: I utilized the Chart.js library to generate diagrams, which comes with various built-in features like tooltips and labels. 
+                One challenge I encountered was figuring out how to adjust the rotation of axis labels and formatting, such as line breaks at commas, particularly when dealing with extensive and numerous classifications, as it could quickly lead to cluttered visuals. 
+                However, these issues were resolved by configuring the chart options.</p>
+            <p>
+                Ml5 classify: Another issue arose when the ML5 classification did not run smoothly from the start. 
+                Initially, the classifier had to be initialized through a preload function. Although there is a return object indicating that the loading process is complete, I opted for a slightly different approach. 
+                At the outset, I load a default image and attempt classification on it. However, I only receive a response once the classifier has finished loading. 
+                This initialization process occurs only at the beginning, and upon receiving feedback, the interface (in my case, the Classify button) can be activated. Meanwhile, a small loading indicator is displayed.
+            </p>
+            <p>
+                Otherwise, my code is very simple and straightforward. I played with the layout a bit. 
+                Since a requirement was that the sample images must be arranged vertically, which would take up a lot of space, I found a way to shrink the sample images and enlarge them only upon hovering. 
+                Now, upon hovering, an enlargement and the current classification are displayed, while the other sample images are hidden.
             </p>
         </div>
     </div>
