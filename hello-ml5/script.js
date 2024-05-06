@@ -76,7 +76,6 @@ dropArea.addEventListener("drop", function(e){
     uploadImage();
 });
 
-// classify result
 function gotResultForExampleDiagram(error, results) {
   if (error) {
     console.error(error);
@@ -104,7 +103,6 @@ function gotResult(error, results) {
     }
   }
 
-// drag and drop or 
 function uploadImage(){
     let imgLink = URL.createObjectURL(inputFile.files[0]);
     img = loadImage(imgLink);
@@ -165,7 +163,6 @@ function showDiagram(results){
                     maxRotation: 0,
                     minRotation: 0,
                     callback: function(value, index, values) {
-                      // Split the labels to show them on multiple lines
                       return value.split(",");
                     }
                 }
