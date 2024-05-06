@@ -99,7 +99,8 @@
     border: 7px dashed #858585;
     background: #f0f0f0;
     background-position: center;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 #drop-area{
@@ -161,4 +162,23 @@
     display: inline-flex;
     justify-content: center;
     padding-bottom: 30px;
+}
+
+
+.discussion {
+    margin-top: 50px; /* Abstand zwischen Inhalt und Fußzeile */
+    justify-content: center;
+    padding-bottom: 30px;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 7px solid #858585;
+}
+
+.documentation {
+    margin-top: 50px; /* Abstand zwischen Inhalt und Fußzeile */
+    justify-content: center;
+    padding-bottom: 30px;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 7px solid #858585;
 }
