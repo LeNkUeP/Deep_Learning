@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TensorFlow.js Tutorial</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Import TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+  
+  <div class="container">
+
+    <div class="header">
+      <h1>FFN Regression</h1>
+    </div>
+
+    <div class="content">
+
+      <div class="column">
+
+        <div class="item">
+          <h1>Data Without Noise (Train- and Test-Data)</h1>
+          <canvas id="scatter-plot1"></canvas>
+        </div>
+
+        <div class="item">
+          <h1>Prediction Without Noise (Train-Data)</h1>
+          <canvas id="scatter-plot3"></canvas>
+          <p class="loss" id="trainLoss3"></p>
+        </div>
+
+        <div class="item">
+          <h1>Best-Fit Prediction With Noise (Train-Data)</h1>
+          <canvas id="scatter-plot5"></canvas>
+          <p class="loss" id="trainLoss5"></p>
+        </div>
+
+        <div class="item">
+          <h1>Overfit Prediction With Noise (Train-Data)</h1>
+          <canvas id="scatter-plot7"></canvas>
+          <p class="loss" id="trainLoss7"></p>
+        </div>
+
+      </div>
+
+      <div class="column">
+
+        <div class="item">
+          <h1>Data with Noise (Train- and Test-Data)</h1>
+          <canvas id="scatter-plot2"></canvas>
+        </div>
+
+        <div class="item">
+          <h1>Prediction Without Noise (Test-Data)</h1>
+          <canvas id="scatter-plot4"></canvas>
+          <p class="loss" id="testLoss4"></p>
+        </div>
+
+        <div class="item">
+          <h1>Best-Fit Prediction With Noise (Test-Data)</h1>
+          <canvas id="scatter-plot6"></canvas>
+          <p class="loss" id="testLoss6"></p>
+        </div>
+
+        <div class="item">
+          <h1>Overfit Prediction With Noise (Test-Data)</h1>
+          <canvas id="scatter-plot8"></canvas>
+          <p class="loss" id="testLoss8"></p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="discussion">
+    <p class="discussionTitle">
+      <b>
+        Discussion
+      </b>
+    </p>
+    <p>In my exploration of AI image classification, I focused on cat images to delineate the boundaries of pre-trained AI. 
+        Standard cat images were consistently well identified, especially those with intricate details or distinct patterns and colors. 
+        Notably, clear confidence values were evident, with secondary and tertiary classifications often falling within the feline category.
+
+        However, challenges arose, particularly with images featuring black cats. Presumably, the lack of contrast associated with black fur posed difficulties for the AI in recognizing feline features. 
+        </p>
+        <p>
+            Additionally, when cats appeared distant within an image, the AI struggled with identification. Furthermore, the posture and form of the cat played a significant role. 
+            Unconventional positions led to misclassifications, favoring objects or animals with similar shapes. 
+            Even distinctive and atypical cat appearances, such as those of wrinkled hairless breeds, resulted in misinterpretations; in one instance, an oxygen mask was mistakenly inferred by the AI instead of recognizing the cat as a living subject.
+        </p>
+        <p>
+            Through this investigation, it becomes evident that while AI excels in certain contexts, its performance can falter with variations in color, distance, and posture, highlighting areas for potential improvement in image classification algorithms.
+        </p>
+</div>
+
+<div class="documentation">
+    <p class="documentationTitle">
+      <b>
+        Technical Documentation
+      </b>
+    </p>
+    <p>
+        <ul>
+            <li>Hosting with Github Pages</li>
+            <li>Visual Code for implementation</li>
+            <li>Chrome as web browser</li>
+            <li>TensorFlow for </li>
+          </ul>
+    </p>
+    <p>
+        <b>
+            Frameworks
+        </b>
+    </p>
+    <p>Chart.js: I utilized the Chart.js library to generate diagrams, which comes with various built-in features like tooltips and labels. 
+        One challenge I encountered was figuring out how to adjust the rotation of axis labels and formatting, such as line breaks at commas, particularly when dealing with extensive and numerous classifications, as it could quickly lead to cluttered visuals. 
+        However, these issues were resolved by configuring the chart options.</p>
+    <p>
+        Ml5 classify: Another issue arose when the ML5 classification did not run smoothly from the start. 
+        Initially, the classifier had to be initialized through a preload function. Although there is a return object indicating that the loading process is complete, I opted for a slightly different approach. 
+        At the outset, I load a default image and attempt classification on it. However, I only receive a response once the classifier has finished loading. 
+        This initialization process occurs only at the beginning, and upon receiving feedback, the interface (in my case, the Classify button) can be activated. Meanwhile, a small loading indicator is displayed.
+    </p>
+    <p>
+        Otherwise, my code is very simple and straightforward. I played with the layout a bit. 
+        Since a requirement was that the sample images must be arranged vertically, which would take up a lot of space, I found a way to shrink the sample images and enlarge them only upon hovering. 
+        Now, upon hovering, an enlargement and the current classification are displayed, while the other sample images are hidden.
+    </p>
+</div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
