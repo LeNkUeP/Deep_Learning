@@ -183,7 +183,7 @@ document.getElementById('testLoss4').innerText = "Test Loss = " + evaluateModel(
 
 // best fit noisy
 const bestFitModel = createModel(hiddenLayer, neurons, learningRate);
-await trainModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy, 300, batchSize);
+await trainModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy, 200, batchSize);
 
 const yBestFitPredictionNoisyTrain = predictModel(bestFitModel, xTrainDataNoisy);
 const bestFitPredictionNoisyTrain = yBestFitPredictionNoisyTrain.map((y, i) => ({x: xTrainDataNoisy[i], y: y[0]}));
@@ -200,7 +200,7 @@ document.getElementById('testLoss6').innerText = "Test Loss = " + evaluateModel(
 
 // overfit noisy
 const overfitModel = createModel(hiddenLayer, neurons, learningRate);
-await trainModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy, 100, batchSize);
+await trainModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy, 600, batchSize);
 
 const yOverFitPredictionNoisyTrain = predictModel(overfitModel, xTrainDataNoisy);
 const overFitPredictionNoisyTrain = yOverFitPredictionNoisyTrain.map((y, i) => ({x: xTrainDataNoisy[i], y: y[0]}));
