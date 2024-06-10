@@ -83,20 +83,21 @@
         Discussion
       </b>
     </p>
-    <p>In my exploration of AI image classification, I focused on cat images to delineate the boundaries of pre-trained AI. 
-        Standard cat images were consistently well identified, especially those with intricate details or distinct patterns and colors. 
-        Notably, clear confidence values were evident, with secondary and tertiary classifications often falling within the feline category.
-
-        However, challenges arose, particularly with images featuring black cats. Presumably, the lack of contrast associated with black fur posed difficulties for the AI in recognizing feline features. 
-        </p>
-        <p>
-            Additionally, when cats appeared distant within an image, the AI struggled with identification. Furthermore, the posture and form of the cat played a significant role. 
-            Unconventional positions led to misclassifications, favoring objects or animals with similar shapes. 
-            Even distinctive and atypical cat appearances, such as those of wrinkled hairless breeds, resulted in misinterpretations; in one instance, an oxygen mask was mistakenly inferred by the AI instead of recognizing the cat as a living subject.
-        </p>
-        <p>
-            Through this investigation, it becomes evident that while AI excels in certain contexts, its performance can falter with variations in color, distance, and posture, highlighting areas for potential improvement in image classification algorithms.
-        </p>
+    <p>
+      In the case of the noise-free dataset, overfitting cannot occur because there is a 
+      deterministic relationship between the x-values and their corresponding
+      y-values, defined by the function. Additionally, the model cannot learn misleading patterns 
+      that might arise from noise. The loss values for both the training and test data are very small 
+      and similar, indicating good generalizability. Smaller datasets lead to overfitting more quickly, 
+      resulting in a higher discrepancy between the loss values, with a lower training loss and a 
+      higher test loss. Otherwise, it was challenging to cause the model to overfit solely through 
+      the number of epochs. Generally, more epochs led to better results for 
+      the best-fit model. However, if the number of epochs became too large, the model eventually 
+      memorized the training data and its noise, resulting in poorer generalization to the test data.
+      Increasing the noise variance also led to a clearly 
+      observable overfitting situation. The model was misled by the strong fluctuations and 
+      inaccurately represented the untrained data.
+    </p>
 </div>
 
 <div class="documentation">
@@ -110,7 +111,8 @@
             <li>Hosting with Github Pages</li>
             <li>Visual Code for implementation</li>
             <li>Chrome as web browser</li>
-            <li>TensorFlow for </li>
+            <li>TensorFlow for models and predictions </li>
+            <li>Chart.js for charts</li>
           </ul>
     </p>
     <p>
@@ -118,19 +120,13 @@
             Frameworks
         </b>
     </p>
-    <p>Chart.js: I utilized the Chart.js library to generate diagrams, which comes with various built-in features like tooltips and labels. 
-        One challenge I encountered was figuring out how to adjust the rotation of axis labels and formatting, such as line breaks at commas, particularly when dealing with extensive and numerous classifications, as it could quickly lead to cluttered visuals. 
-        However, these issues were resolved by configuring the chart options.</p>
     <p>
-        Ml5 classify: Another issue arose when the ML5 classification did not run smoothly from the start. 
-        Initially, the classifier had to be initialized through a preload function. Although there is a return object indicating that the loading process is complete, I opted for a slightly different approach. 
-        At the outset, I load a default image and attempt classification on it. However, I only receive a response once the classifier has finished loading. 
-        This initialization process occurs only at the beginning, and upon receiving feedback, the interface (in my case, the Classify button) can be activated. Meanwhile, a small loading indicator is displayed.
+       Chart.js: I utilized the Chart.js library to generate diagrams, 
+       which comes with various built-in features like tooltips and labels. 
+       For the visualization scatter plots were used, some showing multiple datasets (train & test).
     </p>
     <p>
-        Otherwise, my code is very simple and straightforward. I played with the layout a bit. 
-        Since a requirement was that the sample images must be arranged vertically, which would take up a lot of space, I found a way to shrink the sample images and enlarge them only upon hovering. 
-        Now, upon hovering, an enlargement and the current classification are displayed, while the other sample images are hidden.
+      
     </p>
 </div>
 

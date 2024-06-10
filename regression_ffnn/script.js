@@ -141,6 +141,7 @@ async function createSingleDataChart(data, isTrainData, chartName) {
 const hiddenLayer = 2;
 const neurons = 100;
 const dataPoints = 100;
+const epochs = 100;
 const learningRate = 0.01;
 const batchSize = 32;
 const noiseVariance = 0.05;
@@ -166,15 +167,15 @@ createMultipleDataChart(trainDataNoisy, testDataNoisy, "scatter-plot2");
 
 // not noisy
 const modelNotNoisy = createModel(hiddenLayer, neurons, learningRate);
-await trainModel(modelNotNoisy, xTrainDataNotNoisy, yTrainDataNotNoisy, 100, 32);
+await trainModel(modelNotNoisy, xTrainDataNotNoisy, yTrainDataNotNoisy, epochs, batchSize);
 
 // best fit noisy
-const bestFitModel = createModel(2, 100, 0.01);
-await trainModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy, 100, 32);
+const bestFitModel = createModel(hiddenLayer, neurons, learningRate);
+await trainModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy, 300, batchSize);
 
 // overfit noisy
-const overfitModel = createModel(2, 100, 0.01);
-await trainModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy, 100, 32);
+const overfitModel = createModel(hiddenLayer, neurons, learningRate);
+await trainModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy, 100, batchSize);
 
 
 
