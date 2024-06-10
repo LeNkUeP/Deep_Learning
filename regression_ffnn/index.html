@@ -128,9 +128,46 @@
        which comes with various built-in features like tooltips and labels. 
        For the visualization scatter plots were used, some showing multiple datasets (train & test).
     </p>
-    <p>
-      
+
+    <p></p>
+
+    <p class="documentationTitle">
+      <b>
+        Professional Documentation
+      </b>
     </p>
+    <p>
+      <b>
+          Generate Data
+      </b>
+  </p>
+  <p>
+    The function, `generateData`, creates the dataset for the task. 
+    It generates a specified number of data points (`numDataPoints`) where the x-values 
+    are random numbers within a defined range (`xMin`, `xMax`). The corresponding y-values 
+    are calculated using the given y-function. The data is then split into training 
+    and testing sets (`trainData` and `testData`) using a random shuffle. Then
+    noise is added to clones of both sets (`trainDataNoisy` and `testDataNoisy`) based on a provided 
+    variance (`noiseVariance`). The return value consists of the 4 datasets, the train- and test-data 
+    without noise, and the train- and test-data with noise.
+  </p>
+
+  <p>
+    <b>
+        Train & Evaluate
+    </b>
+</p>
+<p>
+  After the datasets have been generated, the actual training process for machine learning models begins. 
+  First, a model is created based on the parameters defined in the task. 
+  This model is then trained using the generated datasets. 
+  The training process involves multiple epochs and batch sizes, which control the number of 
+  passes through the dataset and the number of data points per pass. Once training is complete, 
+  predictions can be made for new data points. These predictions are passed along with the original 
+  x-values to a visualization function that displays the results graphically. 
+  In addition, a "predict" method is used to calculate the loss values. 
+  Then the models for best fit and overfit are created and visualised just like for the first model.
+</p>
 </div>
 
   <script type="module" src="script.js"></script>
