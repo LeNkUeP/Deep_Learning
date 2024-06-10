@@ -88,12 +88,15 @@
       deterministic relationship between the x-values and their corresponding
       y-values, defined by the function. Additionally, the model cannot learn misleading patterns 
       that might arise from noise. The loss values for both the training and test data are very small 
-      and similar, indicating good generalizability. Smaller datasets lead to overfitting more quickly, 
+      and similar, indicating good generalizability. 
+      <p></p>
+      Smaller datasets lead to overfitting more quickly, 
       resulting in a higher discrepancy between the loss values, with a lower training loss and a 
       higher test loss. Otherwise, it was challenging to cause the model to overfit solely through 
       the number of epochs. Generally, more epochs led to better results for 
       the best-fit model. However, if the number of epochs became too large, the model eventually 
       memorized the training data and its noise, resulting in poorer generalization to the test data.
+      <p></p>
       Increasing the noise variance also led to a clearly 
       observable overfitting situation. The model was misled by the strong fluctuations and 
       inaccurately represented the untrained data.

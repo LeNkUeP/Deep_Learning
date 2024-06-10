@@ -148,7 +148,6 @@ const noiseVariance = 0.05;
 const minX = -2;
 const maxX = 2;
 
-
 const { trainData, testData, trainDataNoisy, testDataNoisy } = generateData(dataPoints, noiseVariance, minX, maxX);
 
 const xTrainDataNotNoisy = trainData.map(d => d.x);
@@ -169,46 +168,48 @@ createMultipleDataChart(trainDataNoisy, testDataNoisy, "scatter-plot2");
 const modelNotNoisy = createModel(hiddenLayer, neurons, learningRate);
 await trainModel(modelNotNoisy, xTrainDataNotNoisy, yTrainDataNotNoisy, epochs, batchSize);
 
-// best fit noisy
-const bestFitModel = createModel(hiddenLayer, neurons, learningRate);
-await trainModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy, 300, batchSize);
-
-// overfit noisy
-const overfitModel = createModel(hiddenLayer, neurons, learningRate);
-await trainModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy, 100, batchSize);
-
-
-
-// prediction not noisy
 const yPredictionNotNoisyTrain = predictModel(modelNotNoisy, xTrainDataNotNoisy);
 const predictionNotNoisyTrain = yPredictionNotNoisyTrain.map((y, i) => ({x: xTrainDataNotNoisy[i], y: y[0]}));
 const yPredictionNotNoisyTest = predictModel(modelNotNoisy, xTestDataNotNoisy);
 const predictionNotNoisyTest = yPredictionNotNoisyTest.map((y, i) => ({x: xTestDataNotNoisy[i], y: y[0]}));
 
-// best fit prediction noisy
+createSingleDataChart(predictionNotNoisyTrain, true, "scatter-plot3");
+createSingleDataChart(predictionNotNoisyTest, false, "scatter-plot4");
+
+document.getElementById('trainLoss3').innerText = "Train Loss = " + evaluateModel(modelNotNoisy, xTrainDataNotNoisy, yTrainDataNotNoisy);
+document.getElementById('testLoss4').innerText = "Test Loss = " + evaluateModel(modelNotNoisy, xTestDataNotNoisy, yTestDataNotNoisy);
+
+
+
+// best fit noisy
+const bestFitModel = createModel(hiddenLayer, neurons, learningRate);
+await trainModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy, 300, batchSize);
+
 const yBestFitPredictionNoisyTrain = predictModel(bestFitModel, xTrainDataNoisy);
 const bestFitPredictionNoisyTrain = yBestFitPredictionNoisyTrain.map((y, i) => ({x: xTrainDataNoisy[i], y: y[0]}));
 const yBestFitPredictionNoisyTest = predictModel(bestFitModel, xTestDataNoisy);
 const bestFitPredictionNoisyTest = yBestFitPredictionNoisyTest.map((y, i) => ({x: xTestDataNoisy[i], y: y[0]}));
 
-// over fit prediction noisy
+createSingleDataChart(bestFitPredictionNoisyTrain, true, "scatter-plot5");
+createSingleDataChart(bestFitPredictionNoisyTest, false, "scatter-plot6");
+
+document.getElementById('trainLoss5').innerText = "Train Loss = " + evaluateModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy);
+document.getElementById('testLoss6').innerText = "Test Loss = " + evaluateModel(bestFitModel, xTestDataNoisy, yTestDataNoisy);
+
+
+
+// overfit noisy
+const overfitModel = createModel(hiddenLayer, neurons, learningRate);
+await trainModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy, 100, batchSize);
+
 const yOverFitPredictionNoisyTrain = predictModel(overfitModel, xTrainDataNoisy);
 const overFitPredictionNoisyTrain = yOverFitPredictionNoisyTrain.map((y, i) => ({x: xTrainDataNoisy[i], y: y[0]}));
 const yOverFitPredictionNoisyTest = predictModel(overfitModel, xTestDataNoisy);
 const overFitPredictionNoisyTest = yOverFitPredictionNoisyTest.map((y, i) => ({x: xTestDataNoisy[i], y: y[0]}));
 
-// visualize
-createSingleDataChart(predictionNotNoisyTrain, true, "scatter-plot3");
-createSingleDataChart(predictionNotNoisyTest, false, "scatter-plot4");
-createSingleDataChart(bestFitPredictionNoisyTrain, true, "scatter-plot5");
-createSingleDataChart(bestFitPredictionNoisyTest, false, "scatter-plot6");
 createSingleDataChart(overFitPredictionNoisyTrain, true, "scatter-plot7");
 createSingleDataChart(overFitPredictionNoisyTest, false, "scatter-plot8");
 
-document.getElementById('trainLoss3').innerText = "Train Loss = " + evaluateModel(modelNotNoisy, xTrainDataNotNoisy, yTrainDataNotNoisy);
-document.getElementById('trainLoss5').innerText = "Train Loss = " + evaluateModel(bestFitModel, xTrainDataNoisy, yTrainDataNoisy);
 document.getElementById('trainLoss7').innerText = "Train Loss = " + evaluateModel(overfitModel, xTrainDataNoisy, yTrainDataNoisy);
-document.getElementById('testLoss4').innerText = "Test Loss = " + evaluateModel(modelNotNoisy, xTestDataNotNoisy, yTestDataNotNoisy);
-document.getElementById('testLoss6').innerText = "Test Loss = " + evaluateModel(bestFitModel, xTestDataNoisy, yTestDataNoisy);
 document.getElementById('testLoss8').innerText = "Test Loss = " + evaluateModel(overfitModel, xTestDataNoisy, yTestDataNoisy);
 
