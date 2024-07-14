@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSTM Textvorhersage</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="mainScript.js" defer></script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Language Model mit LSTM</h1>
+    </div>
+
+    <div class="container">
+        <textarea id="prompt" rows="4" oninput="onPromptChange(this.value)" placeholder="Geben Sie hier Ihren Text ein..."></textarea>
+        <div class="buttons">
+            <button id="vorhersage" disabled="true">Vorhersage</button>
+            <button id="weiter" disabled="true">Weiter</button>
+            <button id="auto" disabled="true">Auto</button>
+            <button id="stopp" disabled="true">Stopp</button>
+            <button id="reset" disabled="true">Reset</button>
+        </div>
+    </div>
+
+    <div class="word-grid">
+        <div class = "word" id="word1" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word2" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word3" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word4" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word5" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word6" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word7" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word8" onclick="onWordChosen(this)"></div>
+        <div class = "word" id="word9" onclick="onWordChosen(this)"></div>
+    </div>
+    <div id="perplexity"></div>
+
+    <div class="discussion-container">
+        <h2>Discussion</h2>
+        <p>
+            Im Rahmen meiner Experimente habe ich das Sprachmodell mit einer Batch Size von 128 über 50 Epochen trainiert. 
+            Die Modellarchitektur bestand aus einer Embedding-Schicht, die die Wörter in Vektoren der Länge 100 umwandelt, gefolgt von einer LSTM-Schicht mit 150 Einheiten, 
+            die Sequenzen zurückgibt. Anschließend kam eine Dropout-Schicht mit einer Rate von 20 %, um Überanpassung zu vermeiden. 
+            Darauf folgte eine weitere LSTM-Schicht mit 100 Einheiten und schließlich eine Dense-Schicht mit einer Softmax-Aktivierung, um Vorhersagen über die möglichen 
+            nächsten Wörter zu treffen.
+            Das Modell wurde mit der kategorischen Kreuzentropie (Categorical Cross-Entropy) als Loss-Funktion und dem Adam-Optimierer kompiliert. 
+            Das Training dauerte insgesamt etwa 15 Minuten pro Epoche, was zu einer Gesamttrainingszeit von rund 12,5 Stunden führte. 
+            Während des Trainings sank der Loss-Wert kontinuierlich und erreichte schließlich einen Wert von etwa 2,7669. 
+            Gleichzeitig stieg die Genauigkeit (Accuracy) auf bis zu 0.4662 an. Aufgrund von Zeitbeschränkungen war es mir nicht möglich, weitere Experimente durchzuführen. 
+            Es ist jedoch zu erwarten, dass eine Erhöhung der Epochenzahl zu einer weiteren Verbesserung der Modellleistung führen könnte.
+        </p>
+        <p>
+            Zusätzlich habe ich die Perplexity des Modells berechnet, welche ein Maß für die Unsicherheit des Modells bei der Vorhersage 
+            des nächsten Wortes ist. Das Modell erreichte eine Perplexity von 3,5, was in Anbetracht der Komplexität und Variabilität der 
+            Trainingsdaten als zufriedenstellend betrachtet werden kann.
+        </p>
+        <p>
+            In meinen Experimenten habe ich festgestellt, dass das Modell in der Lage ist, einige der Trainingssätze teilweise zu rekonstruieren, 
+            insbesondere häufige Phrasen oder Sätze, die mehrfach in den Trainingsdaten vorkamen. 
+            Dies unterstreicht die Notwendigkeit, Datenschutzaspekte bei der Nutzung von Sprachmodellen zu berücksichtigen. 
+            Es ist wichtig, geeignete Maßnahmen wie die Anonymisierung der Daten oder die Nutzung von Differential Privacy zu implementieren, 
+            um den Missbrauch sensibler Informationen zu verhindern. Andererseits konnten diese Sätze teilweise fast ausschließlich nur durch das manuelle hinzufügen von Wörtern
+            mit geringerer Wahrscheinlichkeit und somit der Kenntniss von den ursprünglichen Sätzen, rekonstruiert werden. Eine "Auto"-Funktion konnte in nur wenigen Anwendungsfällen
+            bzw. konkreten Emails, die ursprüngliche Nachricht exakt reproduzieren.
+        </p>
+    </div>
+
+    <div class="documentation-container">
+        <h2>Documentation</h2>
+        <p>
+            Zunächst habe ich mit einem Python-Skript eine Sammlung von E-Mail-Texten aus diversen Ordnern extrahiert und in eine gemeinsame Textdatei geschrieben.
+            Genutzt habe ich hierfür den vorgeschlagenen Datensatz "German-language E-Mail corpus".
+            Mithilfe dieses Python-Programms und der erstellten Textdatei habe ich dann das Modell trainiert. 
+            Da die daraus resultierende Modell-Datei im h5-Format vorlag und es Kompatibilitätsprobleme beim Umwandeln dieser Datei in das JSON-Format sowie 
+            allgemeine Kompatibilitätsprobleme mit TensorFlow.js gab, hat ein Kommilitone meine Modell- und Token-Dateien als API gehostet. 
+            Aus diesem Grund greife ich mit einem POST-Request auf meine Vorhersagen zu. Die weitere Verarbeitung der Vorhersagen, einschließlich der 
+            Verwaltung der Buttons und der Benutzerinteraktion, erfolgt über eine separate JavaScript-Datei.
+        </p>
+        <p>
+            Ansonsten habe ich durch das dynamische "Deaktivieren" und "Aktivieren" der Buttons versucht eine verständlichere und intuitivere Benutzeroberfläche für den 
+            Nutzer zu kreieren. So ist sofort verständlich, wie sich die Webseite samt ihrer Funktionen bedienen lässt.
+        </p>
+    </div>
+</body>
+</html>
